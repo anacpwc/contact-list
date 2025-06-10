@@ -1,0 +1,60 @@
+<div class="container p-4">
+  <div class="row">
+      <div class="col-7 m-auto">
+        <form [formGroup]="formGroupContact">
+
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Nome</label>
+                <input formControlName="name" type="text" class="form-control" id="inputName">
+                <div class="form-text">Insira o nome do contato</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="inputNumber" class="form-label">Número</label>
+                <input formControlName="number" type="text" class="form-control" id="inputNumber">
+                <div class="form-text">Insira o número de telefone</div>
+            </div>
+
+            <button *ngIf="!isEditing" type="submit" class="btn btn-primary" (click)="save()">Salvar contato</button>
+            <button *ngIf="isEditing" class="btn btn-primary" (click)="update()">Atualizar contato</button>
+            <button class="btn btn-secondary ms-2" (click)="clear()">Cancelar</button>
+
+            </form>
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Número</th>
+                  <th scope="col">Remover contato</th>
+                  <th scope="col">Atualizar contato</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let c of contacts">
+                  <td>{{c.name}}</td>
+                  <td>{{c.number}}</td>
+
+                  <td><button class="btn btn-danger"
+                    (click)="delete(c)">
+                    Remover
+                  </button>
+                  </td>
+                  <td><button class="btn btn-primary"
+                    (click)="onClickUpdate(c)">
+                    Alterar
+                  </button>
+                  </td>
+                  </tr>
+                  
+              </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+    
+              
+          
