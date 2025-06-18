@@ -1,60 +1,81 @@
 <div class="container p-4">
   <div class="row">
-      <div class="col-7 m-auto">
-        <form [formGroup]="formGroupContact">
+    <div class="col-7 m-auto">
 
-            <div class="mb-3">
-                <label for="inputName" class="form-label">Nome</label>
-                <input formControlName="name" type="text" class="form-control" id="inputName">
-                <div class="form-text">Insira o nome do contato</div>
-            </div>
+      <div class="mb-3 d-flex">
+        <input
+          type="text"
+          class="form-control me-2"
+          placeholder="Pesquisar por nome, número, email ou categoria"
+          [(ngModel)]="searchText"
+          (input)="onFilterChange(searchText)"
+          name="searchText"
+        />
+        <button class="btn btn-primary" (click)="onSearchClick()">Procurar</button>
+        <button class="btn btn-secondary ms-2" (click)="clearFilter()">Voltar</button>
+      </div>
 
-            <div class="mb-3">
-                <label for="inputNumber" class="form-label">Número</label>
-                <input formControlName="number" type="text" class="form-control" id="inputNumber">
-                <div class="form-text">Insira o número de telefone</div>
-            </div>
-
-            <button *ngIf="!isEditing" type="submit" class="btn btn-primary" (click)="save()">Salvar contato</button>
-            <button *ngIf="isEditing" class="btn btn-primary" (click)="update()">Atualizar contato</button>
-            <button class="btn btn-secondary ms-2" (click)="clear()">Cancelar</button>
-
-            </form>
-
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Nome</th>
-                  <th scope="col">Número</th>
-                  <th scope="col">Remover contato</th>
-                  <th scope="col">Atualizar contato</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr *ngFor="let c of contacts">
-                  <td>{{c.name}}</td>
-                  <td>{{c.number}}</td>
-
-                  <td><button class="btn btn-danger"
-                    (click)="delete(c)">
-                    Remover
-                  </button>
-                  </td>
-                  <td><button class="btn btn-primary"
-                    (click)="onClickUpdate(c)">
-                    Alterar
-                  </button>
-                  </td>
-                  </tr>
-                  
-              </tbody>
-
-            </table>
-
+      <form [formGroup]="formGroupContact">
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Nome</label>
+          <input formControlName="name" type="text" class="form-control" id="inputName" />
         </div>
+
+        <div class="mb-3">
+          <label for="inputNumber" class="form-label">Número</label>
+          <input formControlName="number" type="text" class="form-control" id="inputNumber" />
+        </div>
+
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input formControlName="email" type="email" class="form-control" id="inputEmail" />
+        </div>
+
+        <div class="mb-3">
+          <label for="inputCategory" class="form-label">Categoria</label>
+          <select formControlName="category" class="form-select" id="inputCategory">
+            <option value="">Selecione</option>
+            <option value="família">Família</option>
+            <option value="trabalho">Trabalho</option>
+            <option value="escola">Escola</option>
+          </select>
+        </div>
+
+        <div class="form-check mb-3">
+          <input formControlName="isFavorite" type="checkbox" class="form-check-input" id="inputFavorite" />
+          <label class="form-check-label" for="inputFavorite">Favorito</label>
+        </div>
+
+        <button *ngIf="!isEditing" type="submit" class="btn btn-primary" (click)="save()">Salvar contato</button>
+        <button *ngIf="isEditing" class="btn btn-primary" (click)="update()">Atualizar contato</button>
+        <button class="btn btn-secondary ms-2" (click)="clear()">Cancelar</button>
+      </form>
+
+      <table class="table table-striped mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Número</th>
+            <th scope="col">Email</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Favorito</th>
+            <th scope="col">Remover</th>
+            <th scope="col">Atualizar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of filteredContacts">
+            <td>{{ c.name }}</td>
+            <td>{{ c.number }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.category }}</td>
+            <td>{{ c.isFavorite ? '★' : '☆' }}</td>
+            <td><button class="btn btn-danger" (click)="delete(c)">Remover</button></td>
+            <td><button class="btn btn-primary" (click)="onClickUpdate(c)">Alterar</button></td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
+  </div>
 </div>
-    
-              
-          

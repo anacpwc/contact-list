@@ -1,0 +1,33 @@
+<div class="mb-3">
+  <label for="categoryFilter" class="form-label">Filtrar por categoria:</label>
+  <select id="categoryFilter" class="form-select" #category (change)="onCategoryChange(category.value)">
+    <option value="">Todas</option>
+    <option value="família">Família</option>
+    <option value="trabalho">Trabalho</option>
+    <option value="escola">Escola</option>
+  </select>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Número</th>
+      <th>Email</th>
+      <th>Categoria</th>
+      <th>Favorito</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of filteredContacts">
+      <td>{{ c.name }}</td>
+      <td>{{ c.number }}</td>
+      <td>{{ c.email }}</td>
+      <td>{{ c.category }}</td>
+      <td>
+        <span *ngIf="c.isFavorite">★</span>
+        <span *ngIf="!c.isFavorite">☆</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

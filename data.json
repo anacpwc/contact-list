@@ -1,9 +1,20 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Mãe",
-      "number": "99999999999999"
+      "id": 2,
+      "name": "Pai",
+      "number": "222222222",
+      "email": "opaiassn",
+      "category": "família",
+      "isFavorite": true
+    },
+    {
+      "id": 3,
+      "name": "Ana",
+      "number": "434444444444444",
+      "email": "aassssss",
+      "category": "escola",
+      "isFavorite": false
     }
   ]
 }
