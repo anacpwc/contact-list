@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; // você estava sem OnInit no import
+import { Component, OnInit } from '@angular/core'; 
 import { Contact } from '../Contact';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ContactService } from '../contact.service';
@@ -30,10 +30,14 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadContacts();
+  }
+
+  loadContacts() {
     this.service.getContact().subscribe({
-      next: json => {
+      next: (json) => {
         this.contacts = json;
-        this.applyFilters(); // aplicar filtro inicial
+        this.applyFilters(); 
       }
     });
   }
@@ -44,10 +48,12 @@ export class ContactsComponent implements OnInit {
   }
 
   applyFilters() {
-    if (!this.selectedCategory) {
+    if (!this.selectedCategory || this.selectedCategory === '') {
       this.filteredContacts = this.contacts;
     } else {
-      this.filteredContacts = this.contacts.filter(c => c.category === this.selectedCategory);
+      this.filteredContacts = this.contacts.filter(c => 
+        c.category.toLowerCase() === this.selectedCategory.toLowerCase()
+      );
     }
   }
 }

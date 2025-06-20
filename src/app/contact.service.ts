@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactService {
 
-  apiUrl = "http://localhost:3000/contacts";
+  apiUrl = "http://localhost:8080/contacts";
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +27,12 @@ export class ContactService {
   delete(contacts: Contact): Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/${contacts.id}`);
   }
+
+getContactsByCategory(category: string): Observable<Contact[]> {
+  return this.http.get<Contact[]>(`${this.apiUrl}/search?category=${category}`);
+}
+
+
 
 
 }
