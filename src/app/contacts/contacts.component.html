@@ -1,42 +1,55 @@
-<div class="mb-3">
-  <label for="categoryFilter" class="form-label">Filtrar por categoria:</label>
-  <select id="categoryFilter" class="form-select" #category (change)="onCategoryChange(category.value)">
-    <option value="">Todas</option>
-    <option value="família">Família</option>
-    <option value="trabalho">Trabalho</option>
-    <option value="faculdade">Faculdade</option>
-    <option value="outro">Outro</option>
-  </select>
-</div>
+<div class="container py-5">
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Número</th>
-      <th>Email</th>
-      <th>Categoria</th>
-      <th>Favorito</th>
-      <th>Cidade</th>
-      <th>Ocupação</th>
-      <th>Data de Nascimento</th>
-      <th>Contato de Emergência</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of filteredContacts">
-      <td>{{ c.name }}</td>
-      <td>{{ formatPhone(c.number) }}</td>
-      <td>{{ c.email }}</td>
-      <td>{{ c.category }}</td>
-      <td>
-        <span *ngIf="c.isFavorite">★</span>
-        <span *ngIf="!c.isFavorite">☆</span>
-      </td>
-      <td>{{ c.city }}</td>
-      <td>{{ c.occupation }}</td>
-      <td>{{ formatDateBR(c.birthDate) }}</td>
-      <td>{{ c.emergency ? 'Sim' : 'Não' }}</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="d-flex align-items-center gap-3 mb-4">
+    <label for="categoryFilter" class="form-label mb-0 fw-semibold">Filtrar por categoria:</label>
+    <select
+      id="categoryFilter"
+      class="form-select w-auto shadow-sm"
+      #category
+      (change)="onCategoryChange(category.value)">
+      <option value="">Todas</option>
+      <option value="Família">Família</option>
+      <option value="Trabalho">Trabalho</option>
+      <option value="Faculdade">Faculdade</option>
+      <option value="Outro">Outro</option>
+    </select>
+    <button class="btn btn-outline-secondary btn-sm" (click)="onCategoryChange('')">
+      Limpar Filtro
+    </button>
+  </div>
+
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-striped align-middle">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>Nome</th>
+          <th>Número</th>
+          <th>Email</th>
+          <th>Categoria</th>
+          <th>Favorito</th>
+          <th>Cidade</th>
+          <th>Ocupação</th>
+          <th>Data de Nascimento</th>
+          <th>Emergência</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of filteredContacts" class="text-center">
+          <td class="text-start">{{ c.name }}</td>
+          <td>{{ formatPhone(c.number) }}</td>
+          <td class="text-start">{{ c.email }}</td>
+          <td>{{ c.category }}</td>
+          <td>
+            <span *ngIf="c.isFavorite" class="text-warning fs-5">★</span>
+            <span *ngIf="!c.isFavorite" class="text-muted fs-5">☆</span>
+          </td>
+          <td>{{ c.city }}</td>
+          <td>{{ c.occupation }}</td>
+          <td>{{ formatDateBR(c.birthDate) }}</td>
+          <td>{{ c.emergency ? 'Sim' : 'Não' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
