@@ -1,0 +1,6 @@
+/* Ajusta a largura mínima da coluna "Número" */
+.table thead th:nth-child(2),
+.table tbody td:nth-child(2) {
+  min-width: 140px;  /* ajuste esse valor para mais ou menos largura */
+  white-space: nowrap; /* evita quebra de linha no número */
+}

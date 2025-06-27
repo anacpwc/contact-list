@@ -2,7 +2,6 @@
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
 
-      <!-- 🔍 Pesquisa -->
       <div class="input-group mb-4 shadow-sm">
         <input
           type="text"
@@ -20,7 +19,6 @@
         </button>
       </div>
 
-      <!-- 📋 Formulário -->
       <form [formGroup]="formGroupContact" class="bg-white p-4 rounded shadow-sm border">
 
         <h5 class="mb-4 fw-semibold text-primary">
@@ -101,7 +99,6 @@
         </div>
       </form>
 
-      <!-- 📄 Tabela -->
       <div class="table-responsive mt-5">
         <table class="table table-striped align-middle">
           <thead class="table-primary">
@@ -124,7 +121,11 @@
               <td>{{ formatPhone(c.number) }}</td>
               <td>{{ c.email }}</td>
               <td>{{ c.category }}</td>
-              <td>{{ c.isFavorite ? '★' : '☆' }}</td>
+              <td class="text-center">
+  <span *ngIf="c.isFavorite" class="text-warning fs-5">★</span>
+  <span *ngIf="!c.isFavorite" class="text-muted fs-5">☆</span>
+</td>
+
               <td>{{ c.city }}</td>
               <td>{{ c.occupation }}</td>
               <td>{{ formatDateBR(c.birthDate) }}</td>
@@ -134,15 +135,13 @@
                   <button 
                     class="btn btn-sm btn-primary d-flex align-items-center gap-1"
                     (click)="onClickUpdate(c)"
-                    type="button"
-                  >
+                    type="button">
                     <i class="bi bi-pencil-fill"></i> Editar
                   </button>
                   <button 
                     class="btn btn-sm btn-danger d-flex align-items-center gap-1"
                     (click)="delete(c)"
-                    type="button"
-                  >
+                    type="button">
                     <i class="bi bi-trash-fill"></i> Excluir
                   </button>
                 </div>
