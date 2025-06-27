@@ -16,21 +16,28 @@
       </div>
 
       <form [formGroup]="formGroupContact">
+
+        <!-- Nome -->
         <div class="mb-3">
           <label for="inputName" class="form-label">Nome</label>
           <input formControlName="name" type="text" class="form-control" id="inputName" />
         </div>
 
+        <!-- Número -->
         <div class="mb-3">
           <label for="inputNumber" class="form-label">Número</label>
-          <input formControlName="number" type="text" class="form-control" id="inputNumber" />
+          <input formControlName="number" type="text" class="form-control" maxlength="15" />
+          <div *ngIf="numeroDuplicado" class="text-danger mt-1">Este número já está cadastrado.</div>
         </div>
 
+        <!-- Email -->
         <div class="mb-3">
           <label for="inputEmail" class="form-label">Email</label>
           <input formControlName="email" type="email" class="form-control" id="inputEmail" />
+          <div *ngIf="emailDuplicado" class="text-danger mt-1">Este email já está cadastrado.</div>
         </div>
 
+        <!-- Categoria -->
         <div class="mb-3">
           <label for="inputCategory" class="form-label">Categoria</label>
           <select formControlName="category" class="form-select" id="inputCategory">
@@ -38,19 +45,52 @@
             <option value="Família">Família</option>
             <option value="Trabalho">Trabalho</option>
             <option value="Escola">Escola</option>
+            <option value="Outro">Outro</option>
           </select>
         </div>
 
+        <!-- Favorito -->
         <div class="form-check mb-3">
           <input formControlName="isFavorite" type="checkbox" class="form-check-input" id="inputFavorite" />
           <label class="form-check-label" for="inputFavorite">Favorito</label>
         </div>
 
-        <button *ngIf="!isEditing" type="submit" class="btn btn-primary" (click)="save()">Salvar contato</button>
-        <button *ngIf="isEditing" class="btn btn-primary" (click)="update()">Atualizar contato</button>
-        <button class="btn btn-secondary ms-2" (click)="clear()">Cancelar</button>
+        <!-- Cidade -->
+        <div class="mb-3">
+          <label for="inputCity" class="form-label">Cidade</label>
+          <input formControlName="city" type="text" class="form-control" id="inputCity" />
+        </div>
+
+        <!-- Ocupação -->
+        <div class="mb-3">
+          <label for="inputOccupation" class="form-label">Ocupação</label>
+          <input formControlName="occupation" type="text" class="form-control" id="inputOccupation" />
+        </div>
+
+        <!-- Data de nascimento -->
+        <div class="mb-3">
+          <label for="inputBirthDate" class="form-label">Data de Nascimento</label>
+          <input formControlName="birthDate" type="date" class="form-control" id="inputBirthDate" />
+        </div>
+
+        <!-- Contato de emergência -->
+        <div class="form-check mb-3">
+          <input formControlName="emergency" type="checkbox" class="form-check-input" id="inputEmergency" />
+          <label class="form-check-label" for="inputEmergency">Contato de Emergência</label>
+        </div>
+
+        <div *ngIf="campoVazio" class="text-danger mb-2">
+          Por favor, preencha todos os campos antes de salvar.
+        </div>
+
+
+        <!-- Botões -->
+        <button *ngIf="!isEditing" type="button" class="btn btn-primary" (click)="save($event)">Salvar contato</button>
+        <button *ngIf="isEditing" type="button" class="btn btn-primary" (click)="update($event)">Atualizar contato</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="clear()">Cancelar</button>
       </form>
 
+      <!-- Tabela de contatos -->
       <table class="table table-striped mt-4">
         <thead>
           <tr>
@@ -59,6 +99,10 @@
             <th scope="col">Email</th>
             <th scope="col">Categoria</th>
             <th scope="col">Favorito</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Ocupação</th>
+            <th scope="col">Data de Nascimento</th>
+            <th scope="col">Emergência</th>
             <th scope="col">Remover</th>
             <th scope="col">Atualizar</th>
           </tr>
@@ -66,10 +110,14 @@
         <tbody>
           <tr *ngFor="let c of filteredContacts">
             <td>{{ c.name }}</td>
-            <td>{{ c.number }}</td>
+            <td>{{ formatPhone(c.number) }}</td>
             <td>{{ c.email }}</td>
             <td>{{ c.category }}</td>
             <td>{{ c.isFavorite ? '★' : '☆' }}</td>
+            <td>{{ c.city }}</td>
+            <td>{{ c.occupation }}</td>
+            <td>{{ formatDateBR(c.birthDate) }}</td>
+            <td>{{ c.emergency ? 'Sim' : 'Não' }}</td>
             <td><button class="btn btn-danger" (click)="delete(c)">Remover</button></td>
             <td><button class="btn btn-primary" (click)="onClickUpdate(c)">Alterar</button></td>
           </tr>

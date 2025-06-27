@@ -28,12 +28,7 @@ export class ContactService {
     return this.http.delete<void>(`${this.apiUrl}/${contacts.id}`);
   }
 
-getContactsByCategory(category: string): Observable<Contact[]> {
-  return this.http.get<Contact[]>(`${this.apiUrl}/search?category=${category}`);
+  getContactsByCategory(category: string): Observable<Contact[]> {
+    return this.http.get<Contact[]>(`${this.apiUrl}/search?category=${category}`);
+  }
 }
-
-
-
-
-}
-

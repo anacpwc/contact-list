@@ -4,7 +4,8 @@
     <option value="">Todas</option>
     <option value="família">Família</option>
     <option value="trabalho">Trabalho</option>
-    <option value="escola">Escola</option>
+    <option value="faculdade">Faculdade</option>
+    <option value="outro">Outro</option>
   </select>
 </div>
 
@@ -16,18 +17,26 @@
       <th>Email</th>
       <th>Categoria</th>
       <th>Favorito</th>
+      <th>Cidade</th>
+      <th>Ocupação</th>
+      <th>Data de Nascimento</th>
+      <th>Contato de Emergência</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let c of filteredContacts">
       <td>{{ c.name }}</td>
-      <td>{{ c.number }}</td>
+      <td>{{ formatPhone(c.number) }}</td>
       <td>{{ c.email }}</td>
       <td>{{ c.category }}</td>
       <td>
         <span *ngIf="c.isFavorite">★</span>
         <span *ngIf="!c.isFavorite">☆</span>
       </td>
+      <td>{{ c.city }}</td>
+      <td>{{ c.occupation }}</td>
+      <td>{{ formatDateBR(c.birthDate) }}</td>
+      <td>{{ c.emergency ? 'Sim' : 'Não' }}</td>
     </tr>
   </tbody>
 </table>

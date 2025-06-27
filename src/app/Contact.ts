@@ -4,5 +4,9 @@ export interface Contact {
     number: string,
     email : string,
     category: string,
-    isFavorite: boolean
+    isFavorite: boolean,
+    city: string,
+    occupation: string,
+    birthDate: string,
+    emergency: boolean
 }
