@@ -1,0 +1,20 @@
+nav.navbar {
+  background: linear-gradient(135deg, #7c4dff, #651fff);
+  color: white;
+  box-shadow: 0 4px 10px rgba(101, 31, 255, 0.4);
+  transition: background 0.3s ease;
+}
+
+nav.navbar .navbar-brand,
+nav.navbar .nav-link {
+  color: white !important;
+}
+
+nav.navbar .nav-link.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+nav.navbar:hover {
+  background: linear-gradient(135deg, #651fff, #7c4dff);
+}

@@ -1,6 +1,36 @@
-/* Ajusta a largura mínima da coluna "Número" */
 .table thead th:nth-child(2),
 .table tbody td:nth-child(2) {
-  min-width: 140px;  /* ajuste esse valor para mais ou menos largura */
-  white-space: nowrap; /* evita quebra de linha no número */
+  min-width: 140px; 
+  white-space: nowrap; 
+}
+
+.table thead th {
+  background: linear-gradient(135deg, #7c4dff, #651fff) !important;
+  color: white !important;
+  border: none !important;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-purple {
+  background: linear-gradient(135deg, #7c4dff, #651fff);
+  border: none;
+  color: white !important;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-purple:hover,
+.btn-purple:focus {
+  background-color: #5a379e !important;
+  border-color: #5a379e !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(103, 58, 183, 0.4);
+  outline: none;
 }

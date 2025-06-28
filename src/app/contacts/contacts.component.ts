@@ -40,9 +40,9 @@ export class ContactsComponent implements OnInit {
   loadContacts() {
     this.service.getContact().subscribe({
       next: (json) => {
-        console.log('Contatos carregados:', json); // debug
+        console.log('Contatos carregados:', json); 
         this.contacts = this.sortedCopyByName(json);
-        this.filteredContacts = [...this.contacts]; // garante que apareça na tela
+        this.filteredContacts = [...this.contacts]; 
       },
       error: (err) => {
         console.error('Erro ao carregar contatos:', err);
