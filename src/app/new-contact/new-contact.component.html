@@ -2,23 +2,6 @@
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
 
-      <div class="input-group mb-4 shadow-sm">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Pesquisar por nome, número, email ou categoria"
-          [(ngModel)]="searchText"
-          (input)="onFilterChange(searchText)"
-          name="searchText"
-        />
-        <button class="btn btn-purple" (click)="onSearchClick()">
-          <i class="bi bi-search"></i> Procurar
-        </button>
-        <button class="btn btn-outline-secondary" (click)="clearFilter()">
-          <i class="bi bi-x-circle"></i> Limpar
-        </button>
-      </div>
-
       <form [formGroup]="formGroupContact" class="bg-white p-4 rounded shadow-sm border">
 
         <h5 class="mb-4 fw-semibold" style="color: #6f42c1;">
@@ -99,9 +82,28 @@
         </div>
       </form>
 
+      <!-- Barra de pesquisa -->
+      <div class="input-group mb-4 mt-4 shadow-sm">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Pesquisar por nome, número, email ou categoria"
+          [(ngModel)]="searchText"
+          (input)="onFilterChange(searchText)"
+          name="searchText"
+        />
+        <button class="btn btn-purple" (click)="onSearchClick()">
+          <i class="bi bi-search"></i> Procurar
+        </button>
+        <button class="btn btn-outline-secondary" (click)="clearFilter()">
+          <i class="bi bi-x-circle"></i> Limpar
+        </button>
+      </div>
+
+      <!-- Tabela -->
       <div class="table-responsive mt-5">
         <table class="table table-striped align-middle">
-          <thead class="table-primary">
+          <thead class="table-primary text-nowrap text-center">
             <tr>
               <th>Nome</th>
               <th>Número</th>
@@ -110,25 +112,25 @@
               <th>Favorito</th>
               <th>Cidade</th>
               <th>Ocupação</th>
-              <th>Data Nascimento</th>
+              <th>Data de Nascimento</th>
               <th>Emergência</th>
               <th class="text-center">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let c of filteredContacts">
-              <td>{{ c.name }}</td>
-              <td>{{ formatPhone(c.number) }}</td>
-              <td>{{ c.email }}</td>
-              <td>{{ c.category }}</td>
+              <td class="text-nowrap">{{ c.name || 'Não informado' }}</td>
+              <td class="text-nowrap">{{ formatPhone(c.number) || 'Não informado' }}</td>
+              <td class="text-nowrap">{{ c.email || 'Não informado' }}</td>
+              <td class="text-nowrap">{{ c.category || 'Não informado' }}</td>
               <td class="text-center">
                 <span *ngIf="c.isFavorite" class="text-warning fs-5">★</span>
                 <span *ngIf="!c.isFavorite" class="text-muted fs-5">☆</span>
               </td>
-              <td>{{ c.city }}</td>
-              <td>{{ c.occupation }}</td>
-              <td>{{ formatDateBR(c.birthDate) }}</td>
-              <td>{{ c.emergency ? 'Sim' : 'Não' }}</td>
+              <td class="text-nowrap">{{ c.city || 'Não informado' }}</td>
+              <td class="text-nowrap">{{ c.occupation || 'Não informado' }}</td>
+              <td class="text-nowrap">{{ formatDateBR(c.birthDate) }}</td>
+              <td class="text-nowrap">{{ c.emergency ? 'Sim' : 'Não' }}</td>
               <td>
                 <div class="d-flex justify-content-center gap-2">
                   <button 

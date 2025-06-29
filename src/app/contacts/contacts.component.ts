@@ -91,10 +91,10 @@ export class ContactsComponent implements OnInit {
     return value;
   }
 
-   formatDateBR(dateString: string): string {
-  if (!dateString) return '';
-  const [year, month, day] = dateString.split('-');
-  if (!year || !month || !day) return dateString;
-  return `${day}/${month}/${year}`;
-}
+  formatDateBR(dateString: string): string {
+    if (!dateString || dateString.trim() === '') return 'Não informado';
+    const [year, month, day] = dateString.split('-');
+    if (!year || !month || !day) return dateString;
+    return `${day}/${month}/${year}`;
+  }
 }

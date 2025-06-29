@@ -206,10 +206,11 @@ export class NewContactComponent implements OnInit {
   }
 
   formatDateBR(dateString: string): string {
-  if (!dateString) return '';
+  if (!dateString || dateString.trim() === '') return 'Não informado';
   const [year, month, day] = dateString.split('-');
   if (!year || !month || !day) return dateString;
   return `${day}/${month}/${year}`;
 }
+
 
 }

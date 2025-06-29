@@ -35,16 +35,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let c of filteredContacts" class="text-center">
-          <td class="text-start">{{ c.name }}</td>
-          <td>{{ formatPhone(c.number) }}</td>
-          <td class="text-start">{{ c.email }}</td>
-          <td>{{ c.category }}</td>
+          <td class="text-start">{{ c.name || 'Não informado' }}</td>
+          <td>{{ formatPhone(c.number) || 'Não informado' }}</td>
+          <td class="text-start">{{ c.email || 'Não informado' }}</td>
+          <td>{{ c.category || 'Não informado' }}</td>
           <td>
             <span *ngIf="c.isFavorite" class="text-warning fs-5">★</span>
             <span *ngIf="!c.isFavorite" class="text-muted fs-5">☆</span>
           </td>
-          <td>{{ c.city }}</td>
-          <td>{{ c.occupation }}</td>
+          <td>{{ c.city || 'Não informado' }}</td>
+          <td>{{ c.occupation || 'Não informado' }}</td>
           <td>{{ formatDateBR(c.birthDate) }}</td>
           <td>{{ c.emergency ? 'Sim' : 'Não' }}</td>
         </tr>

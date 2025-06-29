@@ -36,34 +36,7 @@
       </ul>
     </div>
 
-    <div class="running-cat" aria-hidden="true">
-      🐱
-    </div>
+    <div class="running-cat" aria-hidden="true">🐈</div>
 
   </div>
 </nav>
-
-<style>
-  .running-cat {
-    position: absolute;
-    top: 10px;
-    left: -50px;
-    font-size: 2rem;
-    animation: runAcross 10s linear infinite;
-    user-select: none;
-  }
-
-  @keyframes runAcross {
-    0% {
-      left: -50px;
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    100% {
-      left: 100%;
-      transform: rotate(0deg);
-    }
-  }
-</style>
